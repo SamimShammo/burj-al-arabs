@@ -42,7 +42,7 @@ export default function Room({room}){
   const classes = useStyles();
   const history = useHistory()
     const handleBook = (bedType) => {
-        history.push(`/book/${bedType}`);
+        history.push(`/book`);
     }
   return (
     <Card className={classes.root}>

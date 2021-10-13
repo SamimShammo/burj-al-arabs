@@ -6,29 +6,37 @@ import {
   Route
 } from "react-router-dom";
 import Home from './components/Home/Home';
-import Login from './components/Login/Login';
 import Book from './components/Book/Book';
 import Header from './components/Header/Header';
+import Login from './components/Login/Login';
+import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './privateRoute/PrivateRoute';
+import Notfound from './components/Notfound/Notfound';
 
 function App() {
   return (
-      <Router>
+      <AuthProvider>
+        <Router>
           <Header/>
           <Switch>
-            <Route path="/home">
+            <PrivateRoute path="/home">
               <Home />
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/book/:bedType">
+            <PrivateRoute path="/book">
               <Book />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/">
               <Home />
             </Route>
+            <Route  path="*">
+              <Notfound />
+            </Route>
           </Switch>
       </Router>
+      </AuthProvider>
   );
 }
 
